@@ -19,6 +19,7 @@
     <button type="submit">Search</button>
   </form>
 </header>
+  <p id="noResults" style="display: none; color: red;">No results found.</p>
   
   <main>
     <section class="posts">
@@ -38,7 +39,33 @@
   <footer>
     <p>&copy; 2025 DARE TO DEVILS. All rights reserved.</p>
   </footer>
-</body>
+</body><script>
+  const searchForm = document.getElementById("searchForm");
+  const searchInput = document.getElementById("searchInput");
+  const posts = document.querySelectorAll(".post-title");
+  const noResults = document.getElementById("noResults");
+
+  searchForm.addEventListener("submit", function (e) {
+    e.preventDefault(); // stops page reload
+    const query = searchInput.value.toLowerCase();
+    let hasMatch = false;
+
+    posts.forEach(post => {
+      const title = post.textContent.toLowerCase();
+      const article = post.closest("article");
+
+      if (title.includes(query)) {
+        article.style.display = "";
+        hasMatch = true;
+      } else {
+        article.style.display = "none";
+      }
+    });
+
+    noResults.style.display = hasMatch ? "none" : "block";
+  });
+</script>
+  
     const searchInput = document.getElementById("searchInput");
     const posts = document.querySelectorAll(".post-title");
 
