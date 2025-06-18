@@ -39,4 +39,23 @@
     <p>&copy; 2025 DARE TO DEVILS. All rights reserved.</p>
   </footer>
 </body>
+    const searchInput = document.getElementById("searchInput");
+    const posts = document.querySelectorAll(".post-title");
+
+    searchInput.addEventListener("input", function () {
+      const query = searchInput.value.toLowerCase();
+
+      posts.forEach(post => {
+        const title = post.textContent.toLowerCase();
+        const article = post.closest("article");
+
+        if (title.includes(query)) {
+          article.style.display = "";
+        } else {
+          article.style.display = "none";
+        }
+      });
+    });
+  </script>
+</body>
 </html>
